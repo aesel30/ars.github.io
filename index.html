@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesel Reservasi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aesel Reservasi</h1>
+        <form id="reservationForm">
+            <label for="reservationType">Pilih Ujian:</label>
+            <select id="reservationType" required>
+                <option value="">Pilih Ujian</option>
+                <option value="JFT">JFT</option>
+                <option value="PM">PM</option>
+                <option value="Restoran">Restoran</option>
+                <option value="Kaigo Indonesia">Kaigo Indonesia</option>
+                <option value="Kaigo Jepang">Kaigo Jepang</option>
+                <option value="Pertanian">Pertanian</option>
+                <option value="Peternakan">Peternakan</option>
+            </select>
+            
+            <div id="formFields" style="display: none;">
+                <label for="jenisTes">Jenis Tes:</label>
+                <input type="text" id="jenisTes" readonly required>
+                
+                <label for="namaLengkap">Nama Lengkap:</label>
+                <input type="text" id="namaLengkap" required>
+                
+                <label for="idPrometric">ID Prometric:</label>
+                <input type="text" id="idPrometric" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                
+                <label for="ttl">Tempat Tanggal Lahir:</label>
+                <input type="text" id="ttl" required>
+                
+                <label for="jenisKelamin">Jenis Kelamin:</label>
+                <select id="jenisKelamin" required>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+                
+                <label for="bulanUjian">Bulan Ujian:</label>
+                <input type="text" id="bulanUjian" required>
+                
+                <label for="tanggalUjian">Tanggal Ujian:</label>
+                <input type="text" id="tanggalUjian" required>
+                
+                <label for="tempatUjian">Tempat Ujian:</label>
+                <input type="text" id="tempatUjian" required>
+                
+                <button type="button" id="submitBtn">Kirim</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const reservationType = document.getElementById('reservationType');
+        const formFields = document.getElementById('formFields');
+        const jenisTes = document.getElementById('jenisTes');
+        const submitBtn = document.getElementById('submitBtn');
+
+        reservationType.addEventListener('change', function() {
+            if (this.value) {
+                formFields.style.display = 'block';
+                jenisTes.value = this.value;
+            } else {
+                formFields.style.display = 'none';
+            }
+        });
+
+        submitBtn.addEventListener('click', function() {
+            const namaLengkap = document.getElementById('namaLengkap').value;
+            const idPrometric = document.getElementById('idPrometric').value;
+            const password = document.getElementById('password').value;
+            const ttl = document.getElementById('ttl').value;
+            const jenisKelamin = document.getElementById('jenisKelamin').value;
+            const bulanUjian = document.getElementById('bulanUjian').value;
+            const tanggalUjian = document.getElementById('tanggalUjian').value;
+            const tempatUjian = document.getElementById('tempatUjian').value;
+
+            const message = `Jenis Tes: ${jenisTes.value}\nNama Lengkap: ${namaLengkap}\nID Prometric: ${idPrometric}\nPassword: ${password}\nTempat Tanggal Lahir: ${ttl}\nJenis Kelamin: ${jenisKelamin}\nBulan Ujian: ${bulanUjian}\nTanggal Ujian: ${tanggalUjian}\nTempat Ujian: ${tempatUjian}`;
+
+            window.open(`https://wa.me/62895346030735?text=${encodeURIComponent(message)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
